@@ -7,6 +7,7 @@ echo "Node Name is: ${env.NODE_NAME}"
 properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '5')), [$class: 'JobLocalConfiguration', changeReasonComment: '']])
 
 try{
+slackNotifications('STARTED')
 stage('CheckOutCode'){
 git branch: 'development', credentialsId: 'cc886bdf-15ef-4341-9b81-f195703dd248', url: 'https://github.com/mss-devops-hari/maven-web-application.git'
 }
