@@ -11,7 +11,13 @@ options {
  // cron ('* * * * *')
  // pollSCM ('* * * * *')
 //}
-properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '5', daysToKeepStr: '', numToKeepStr: '5')), parameters([choice(choices: ['master', 'qa', 'development'], description: 'select branch name', name: 'BranchName'), string(defaultValue: 'Hari Tec', description: 'Give name parameter value', name: 'Name')]), [$class: 'JobLocalConfiguration', changeReasonComment: '']])
+
+parameters
+{
+choice(choices: ['master', 'qa', 'development'], description: 'select branch name', name: 'BranchName'), 
+
+string(defaultValue: 'Hari Tec', description: 'Give name parameter value', name: 'Name')
+}
 
 tools{
     maven 'maven3.8.6'
