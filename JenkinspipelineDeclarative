@@ -11,6 +11,7 @@ options {
  // cron ('* * * * *')
  // pollSCM ('* * * * *')
 //}
+properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '5', daysToKeepStr: '', numToKeepStr: '5')), parameters([choice(choices: ['master', 'qa', 'development'], description: 'select branch name', name: 'BranchName'), string(defaultValue: 'Hari Tec', description: 'Give name parameter value', name: 'Name')]), [$class: 'JobLocalConfiguration', changeReasonComment: '']])
 
 tools{
     maven 'maven3.8.6'
@@ -20,7 +21,7 @@ stages{
 stage('CheckOutCode'){
 steps{
     slackNotifications('STARTED')
-git branch: 'development', credentialsId: 'cc886bdf-15ef-4341-9b81-f195703dd248', url: 'https://github.com/mss-devops-hari/maven-web-application.git'
+git branch: "${params.BranchName}", credentialsId: 'cc886bdf-15ef-4341-9b81-f195703dd248', url: 'https://github.com/mss-devops-hari/maven-web-application.git'
 }
 }
 stage('Build'){
