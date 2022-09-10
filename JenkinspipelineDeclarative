@@ -14,7 +14,7 @@ options {
 
 parameters
 {
-choice(choices: ['development', 'qa', 'master'], description: 'select branch name', name: 'BranchName'), 
+choice(choices: ['development', 'qa', 'master'], description: 'select branch name', name: 'BranchName')
 
 string(defaultValue: 'Hari Tec', description: 'Give name parameter value', name: 'Name')
 }
